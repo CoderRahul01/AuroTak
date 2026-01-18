@@ -24,8 +24,11 @@ class HiveService {
   }
 
   List<CheckIn> getLatestCheckIns(int limit) {
+    return getAllCheckIns().take(limit).toList();
+  }
+
+  List<CheckIn> getAllCheckIns() {
     final box = _checkInBox;
-    final allCheckIns = box.values.toList()..sort((a, b) => b.date.compareTo(a.date));
-    return allCheckIns.take(limit).toList();
+    return box.values.toList()..sort((a, b) => b.date.compareTo(a.date));
   }
 }
